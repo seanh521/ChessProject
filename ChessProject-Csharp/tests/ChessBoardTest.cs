@@ -25,6 +25,13 @@ namespace SolarWinds.MSP.Chess
 			Assert.AreEqual(ChessBoard.MaxBoardHeight, 7);
 		}
 
+		[Test]
+		public void Has_MaxNoPawns_of_7()
+		{
+			Assert.AreEqual(ChessBoard.MaxNoPawns, 7);
+		}
+
+
         [Test]
 		public void IsLegalBoardPosition_True_X_equals_0_Y_equals_0()
 		{
@@ -79,8 +86,8 @@ namespace SolarWinds.MSP.Chess
 		{
 			Pawn firstPawn = new Pawn(PieceColor.Black);
 			Pawn secondPawn = new Pawn(PieceColor.Black);
-			chessBoard.Add(firstPawn, 6, 3, PieceColor.Black);
-			chessBoard.Add(secondPawn, 6, 3, PieceColor.Black);
+			chessBoard.Add(firstPawn, 6, 3, PieceColor.Black, chessBoard);
+			chessBoard.Add(secondPawn, 6, 3, PieceColor.Black, chessBoard);
 			Assert.AreEqual(firstPawn.XCoordinate, 6);
             Assert.AreEqual(firstPawn.YCoordinate, 3);
             Assert.AreEqual(secondPawn.XCoordinate, -1);
@@ -94,7 +101,7 @@ namespace SolarWinds.MSP.Chess
 			{
 				Pawn pawn = new Pawn(PieceColor.Black);
 				int row = i / ChessBoard.MaxBoardWidth;
-				chessBoard.Add(pawn, 6 + row, i % ChessBoard.MaxBoardWidth, PieceColor.Black);
+				chessBoard.Add(pawn, 6 + row, i % ChessBoard.MaxBoardWidth, PieceColor.Black, chessBoard);
 				if (row < 1)
 				{
 					Assert.AreEqual(pawn.XCoordinate, (6 + row));
